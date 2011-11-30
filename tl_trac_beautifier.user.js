@@ -7,6 +7,7 @@
 
 var $;
 
+removeStylesheets();
 addBootstrap();
 addJQuery(letsJQuery);
 
@@ -33,6 +34,18 @@ function addBootstrap() {
     link.setAttribute('rel', 'stylesheet');
 
     document.head.appendChild(link);
+}
+
+function removeStylesheets() {
+    var elements = document.head.children,
+        i;
+
+    for (i = 0; i < elements.length; i++) {
+        if (elements[i].getAttribute('rel') == 'stylesheet') {
+            document.head.removeChild(elements[i]);
+            i--;
+        }
+    }
 }
 
 // All your JQuery code must be inside this function
@@ -231,7 +244,7 @@ function letsJQuery() {
             url = utils.gravatarUrl(user, 18);
 
         $link.css('position', 'relative');
-        $link.html('<img src="' + url + '" style="border-radius: 3px; position: absolute; left: -25px;"> ' + user); 
+        $link.html('<img src="' + url + '" style="border-radius: 3px; position: absolute; left: -25px;"> ' + user);
     });
 
     // Create ticket view
