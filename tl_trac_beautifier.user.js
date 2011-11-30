@@ -197,6 +197,15 @@ function letsJQuery() {
         }
     });
 
+    $('table.listing td.reporter, table.listing td.owner').css('text-align', 'center');
+
+    $('table.listing td.reporter, table.listing td.owner').each(function(index) {
+        var user = utils.strip($(this).text()),
+            url = utils.gravatarUrl(user, 20);
+
+        $(this).html('<img src="' + url + '" title="' + user + '" style="border-radius: 5px;">');
+    });
+
     // Individual ticket view
 
     $('#content.ticket').css({
