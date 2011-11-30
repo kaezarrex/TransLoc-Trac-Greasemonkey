@@ -7,6 +7,7 @@
 
 var $;
 
+addBootstrap();
 addJQuery(letsJQuery);
 
 // Add jQuery
@@ -24,7 +25,15 @@ function addJQuery(callback) {
     document.body.appendChild(script);
 }
 
+function addBootstrap() {
+    var link = document.createElement("link");
 
+    link.setAttribute('href', 'http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css');
+    link.setAttribute('type', 'text/css');
+    link.setAttribute('rel', 'stylesheet');
+
+    document.head.appendChild(link);
+}
 
 // All your JQuery code must be inside this function
 function letsJQuery() {
