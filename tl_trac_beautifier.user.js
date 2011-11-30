@@ -28,14 +28,19 @@ function addJQuery(callback) {
 function letsJQuery() {
 
     var authors = [
-        {
-            name: 'Jason',
-            url: null
-        }, {
-            name: 'Hazmat',
-            url: 'https://github.com/kaezarrex'
-        }
-    ];
+            {
+                name: 'Jason',
+                url: null
+            }, {
+                name: 'Hazmat',
+                url: 'https://github.com/kaezarrex'
+            }
+        ],
+        icons = {
+            'task': 'http://hacks.jwf.us/pretty_trac/icons/page_white_text.png',
+            'defect': 'http://hacks.jwf.us/pretty_trac/icons/bug.png',
+            'enhancement': 'http://hacks.jwf.us/pretty_trac/icons/star.png'
+        };
 
     $('body').css({
         width: 1024,
@@ -92,9 +97,9 @@ function letsJQuery() {
     }).each(function(){
         // Go through and replace the text with an icon
         var types = {
-            'task': '<img src="http://hacks.jwf.us/pretty_trac/icons/page_white_text.png" alt="Task Icon" title="Task" />',
-            'defect': '<img src="http://hacks.jwf.us/pretty_trac/icons/bug.png" alt="Bug Icon" title="Defect / Bug" />',
-            'enhancement': '<img src="http://hacks.jwf.us/pretty_trac/icons/star.png" alt="Enhancement Icon" title="Enhancement / New Feature" />'
+            'task': '<img src="' + icons.task + '" alt="Task Icon" title="Task" />',
+            'defect': '<img src="' + icons.defect + '" alt="Bug Icon" title="Defect / Bug" />',
+            'enhancement': '<img src="' + icons.enhancement + '" alt="Enhancement Icon" title="Enhancement / New Feature" />'
         };
         var $this = $(this),
             content = $this.text();
@@ -136,18 +141,32 @@ function letsJQuery() {
 
     // Create ticket view
 
-    $('#field-owner').change(function(event){
-        var user = event.target.value,
-            url = gravatarUrl(user, 20),
-            $image = $(this).siblings('img');
+    (function() {
 
-        if ($image.length == 0) {
-            $(this).parent().append('<img src="' + url + '" style="border-radius: 3px; position: absolute; top: 3px; margin-left: 5px">');
-            $(this).parent().css('position', 'relative');
-        } else {
-            $image.attr('src', url);
-        }
-    });
+        var $typeField = $('#field-type'),
+            type = $typeField.val();
+
+        $typeField.parent().append('<img src="' + icons[type] + '" style="position: absolute; top: 3px; margin-left: 5px; margin-top: 2px;">');
+        $typeField.parent().css('position', 'relative');
+
+        $typeField.change(function(event){
+            $(this).siblings('img').attr('src', icons[event.target.value]);
+        });
+
+        $('#field-owner').change(function(event){
+            var user = event.target.value,
+                url = gravatarUrl(user, 20),
+                $image = $(this).siblings('img');
+
+            if ($image.length == 0) {
+                $(this).parent().append('<img src="' + url + '" style="border-radius: 3px; position: absolute; top: 3px; margin-left: 5px">');
+                $(this).parent().css('position', 'relative');
+            } else {
+                $image.attr('src', url);
+            }
+        });
+
+    })();
 
     // -----------------------------------------------------
     // For the Preferences Box
