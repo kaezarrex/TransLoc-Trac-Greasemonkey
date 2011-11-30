@@ -134,6 +134,21 @@ function letsJQuery() {
         $link.html('<img src="' + url + '" style="border-radius: 3px; position: absolute; left: -25px;"> ' + user); 
     });
 
+    // Create ticket view
+
+    $('#field-owner').change(function(event){
+        var user = event.target.value,
+            url = gravatarUrl(user, 20),
+            $image = $(this).siblings('img');
+
+        if ($image.length == 0) {
+            $(this).parent().append('<img src="' + url + '" style="border-radius: 3px; position: absolute; top: 3px; margin-left: 5px">');
+            $(this).parent().css('position', 'relative');
+        } else {
+            $image.attr('src', url);
+        }
+    });
+
     // -----------------------------------------------------
     // For the Preferences Box
     // -----------------------------------------------------
