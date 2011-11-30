@@ -121,13 +121,17 @@ function letsJQuery() {
         color: '#000',
         fontWeight: 'bold'
     });
+    $('#ticket .properties td, #ticket .properties th').css({
+        'font-size': '13px'
+    });
 
     $('#h_reporter, #h_owner').each(function(index) {
         var $link = $(this).next().find('a'),
             user = $link.text(),
-            url = gravatarUrl(user, 10);
+            url = gravatarUrl(user, 18);
 
-        $link.html('<img src="' + url + '"> ' + user); 
+        $link.css('position', 'relative');
+        $link.html('<img src="' + url + '" style="border-radius: 3px; position: absolute; left: -25px;"> ' + user); 
     });
 
     // -----------------------------------------------------
