@@ -66,10 +66,23 @@ function letsJQuery() {
             'enhancement': 'http://hacks.jwf.us/pretty_trac/icons/star.png'
         };
 
-    $('body').css({
-        width: 1024,
-        margin: '15px auto'
-    });
+    $('body').addClass('container');
+
+    $('#banner').css('margin-top', '50px');
+
+    $('#mainnav [href="/trac/search"]').parent().remove();
+    $('#mainnav').removeClass('nav').addClass('topbar topbar-inner');
+    $('#mainnav ul').addClass('nav');
+    $('#mainnav ul').wrap('<div class="container"></div>');
+    $('#search').find('label, [type=submit]').remove();
+    $('#search input').attr('placeholder', 'Search');
+    $('#mainnav .container').append($('#search').detach());
+    $('#mainnav .nav').append($('#metanav').detach());
+    $('#metanav').replaceWith('<li id="metanav" class="dropdown">' + $('#metanav').html() + '</li>');
+    $('#metanav ul').addClass('dropdown-menu');
+    $('#metanav').prepend('<a href="#" class="dropdown-toggle">More</a>');
+    $('#metanav').click(function(){$(this).toggleClass('open');});
+    $('#metanav ul .last').remove();
 
     // -----------------------------------------------------
     // Utilities
