@@ -144,6 +144,7 @@ function letsJQuery() {
     $('#banner').css('margin-top', '50px');
 
     $('#mainnav [href="/trac/search"]').parent().remove();
+    $('#mainnav [href="/trac/report"]').text('All Tickets');
     $('#mainnav').removeClass('nav').addClass('topbar topbar-inner');
     $('#mainnav ul').addClass('nav');
     $('#mainnav ul').wrap('<div class="container"></div>');
@@ -156,6 +157,32 @@ function letsJQuery() {
     $('#metanav').prepend('<a href="#" class="dropdown-toggle">More</a>');
     $('#metanav').click(function(){$(this).toggleClass('open');});
     $('#metanav ul .last').remove();
+    $('#mainnav .container').prepend($('#banner').detach());
+    $('#banner').css({
+        height: '28px',
+        margin: '4px',
+        padding: '2px',
+        'border-radius': '5px',
+        'background-color': 'white',
+        float: 'left'
+    });
+    $('#logo img').css({
+        width: '28px',
+        height: '28px'
+    });
+    $('#main').css('margin-top', '40px');
+    $('#ctxtnav').removeClass('nav');
+    $('#ctxtnav ul').addClass('unstyled');
+    $('#ctxtnav ul').css('text-align', 'right');
+    $('#ctxtnav ul li').css('display', 'inline-block');
+    $('#ctxtnav ul li[class!="last"]').append('<span class="divider">/</span>');
+    $('#ctxtnav .divider').css('padding', '0 5px');
+    $('#ctxtnav h2').css('display', 'none');
+
+
+    $('.noprint').css('display', 'none');
+    $('input [type="submit"]').addClass('btn');
+
 
     // -----------------------------------------------------
     // Utilities
@@ -185,16 +212,9 @@ function letsJQuery() {
     // For the Navigation
     // -----------------------------------------------------
 
-    var $myActiveTicketsNav;
-    $('#mainnav ul li').each(function(){
-        var $this = $(this);
+    var $allTicketsNav = $('#mainnav [href="/trac/report"]').parent(),
+        $myActiveTicketsNav = $('<li class="activeTicketsNav"><a href="https://dev.transloc.com/trac/report/21">My Active Tickets</a></li>').insertBefore($allTicketsNav);
 
-        if($this.find('a').text() === "View Tickets"){
-            $this.find('a').text("View All Tickets");
-
-            $myActiveTicketsNav = $('<li class="activeTicketsNav"><a href="https://dev.transloc.com/trac/report/21">My Active Tickets</a></li>').insertBefore($this);
-        }
-    });
     if(/My Active Tickets/.exec($('title').text())){
         $('#mainnav ul li').removeClass('active');
         $myActiveTicketsNav.addClass('active');
