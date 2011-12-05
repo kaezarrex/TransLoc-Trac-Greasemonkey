@@ -181,7 +181,8 @@ function letsJQuery() {
 
 
     $('.noprint').css('display', 'none');
-    $('input [type="submit"]').addClass('btn');
+    $('input[type="submit"]').addClass('btn');
+    $('input[name="submit"], input[name="save"], input[name="update"]').addClass('primary');
 
 
     // -----------------------------------------------------
