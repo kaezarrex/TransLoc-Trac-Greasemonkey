@@ -40,7 +40,12 @@ function letsJQuery() {
             name: 'Tim',
             url: 'https://github.com/generictjohnson'
         }
-    ];
+    ],
+    icons = {
+        'task': 'http://hacks.jwf.us/pretty_trac/icons/page_white_text.png',
+        'defect': 'http://hacks.jwf.us/pretty_trac/icons/bug.png',
+        'enhancement': 'http://hacks.jwf.us/pretty_trac/icons/star.png'
+    };
 
     $('body').css({
         width: 1024,
