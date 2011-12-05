@@ -385,5 +385,15 @@ function letsJQuery() {
         $footer.append(html);
 
     })();
+
+    // -----------------------------------------------------
+    // For the Wiki
+    // -----------------------------------------------------
+
+    (function() {
+        var $wikipage = $('#wikipage');
+
+        $wikipage.find('.wiki-toc').css('float', 'right');
+    })();
 }
 
